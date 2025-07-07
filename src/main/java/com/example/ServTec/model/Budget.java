@@ -57,8 +57,10 @@ public class Budget {
 
     //metodo para calcular el monto total.
     public void calculateTotal(){
-        Double jobTotal = jobItems.stream().mapToDouble(JobItem::getAmount).sum();
-        Double partTotal = partItems.stream().mapToDouble(PartItem::getAmount).sum();
+        Double jobTotal = (jobItems != null) ?
+                jobItems.stream().mapToDouble(JobItem::getAmount).sum() : 0.0;
+        Double partTotal = (partItems != null) ?
+                partItems.stream().mapToDouble(PartItem::getAmount).sum() : 0.0;
         this.totalAmount = jobTotal + partTotal;
     }
 }

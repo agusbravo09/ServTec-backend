@@ -1,0 +1,287 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-06-15T12:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.2.0",
+  "resources": [
+    {
+      "_id": "env_1",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:9001/api"
+      },
+      "color": null,
+      "metaSortKey": -1000000000000,
+      "_type": "environment"
+    },
+    {
+      "_id": "req_1",
+      "parentId": "fld_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Crear Cliente",
+      "description": "",
+      "method": "POST",
+      "url": "{{ base_url }}/clients",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"dni\": \"12345678\",\n  \"name\": \"Juan Pérez\",\n  \"cellphone\": \"555-1234\",\n  \"address\": \"Calle Falsa 123\",\n  \"email\": \"juan@example.com\",\n  \"location\": \"Ciudad\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2",
+      "parentId": "fld_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Listar Clientes",
+      "description": "",
+      "method": "GET",
+      "url": "{{ base_url }}/clients",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 1,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3",
+      "parentId": "fld_2",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Crear Computadora",
+      "description": "",
+      "method": "POST",
+      "url": "{{ base_url }}/computers",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"type\": \"Laptop\",\n  \"processor\": \"Intel i7\",\n  \"motherboard\": \"Asus XYZ\",\n  \"ram\": \"16GB\",\n  \"storage\": \"512GB SSD\",\n  \"powerSupply\": \"500W\",\n  \"graphics\": \"NVIDIA GTX 1650\",\n  \"client\": {\n    \"id\": 1\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4",
+      "parentId": "fld_3",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Crear Presupuesto",
+      "description": "",
+      "method": "POST",
+      "url": "{{ base_url }}/budgets",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"emissionDate\": \"2023-06-15\",\n  \"validityDate\": \"2023-07-15\",\n  \"budgetNumber\": \"BGT-001\",\n  \"comments\": \"Reparación urgente\",\n  \"client\": {\n    \"id\": 1\n  },\n  \"computer\": {\n    \"id\": 1\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_5",
+      "parentId": "fld_4",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Añadir Item de Trabajo",
+      "description": "",
+      "method": "POST",
+      "url": "{{ base_url }}/budgets/1/add-job",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Cambio de pantalla\",\n  \"hours\": 2.5,\n  \"hourPrice\": 1500.00\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_6",
+      "parentId": "fld_4",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Añadir Item de Parte",
+      "description": "",
+      "method": "POST",
+      "url": "{{ base_url }}/budgets/1/add-part",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"description\": \"Pantalla LCD 15\\\"\",\n  \"quantity\": 1,\n  \"unitPrice\": 12000.00\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 1,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7",
+      "parentId": "fld_5",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Ver Presupuesto Completo",
+      "description": "",
+      "method": "GET",
+      "url": "{{ base_url }}/budgets/1",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_1",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Clientes",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 0,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_2",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Computadoras",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 1,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_3",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Presupuestos",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 2,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_4",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Items",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 3,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_5",
+      "parentId": "wrk_1",
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "Consultas",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 4,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_1",
+      "parentId": null,
+      "modified": 1686835200000,
+      "created": 1686835200000,
+      "name": "ServTec API",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    }
+  ]
+}
