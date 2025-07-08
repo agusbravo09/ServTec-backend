@@ -1,5 +1,6 @@
 package com.example.ServTec.controller;
 
+import com.example.ServTec.dto.utils.BudgetDTO;
 import com.example.ServTec.model.Budget;
 import com.example.ServTec.model.BudgetStatus;
 import com.example.ServTec.model.JobItem;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/budgets")
@@ -21,28 +23,36 @@ public class BudgetController {
     private IBudgetService budgetService;
 
     @GetMapping
-    public List<Budget> getAll(){
-        return budgetService.getAllBudgets();
+    public List<BudgetDTO> getAll(){
+        return budgetService.getAllBudgets().stream()
+                .map(BudgetDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/client/{clientId}")
-    public List<Budget> getByClient(@PathVariable Long clientId){
-        return budgetService.getBudgetsByClientId(clientId);
+    public List<BudgetDTO> getByClient(@PathVariable Long clientId){
+        return budgetService.getBudgetsByClientId(clientId).stream()
+                .map(BudgetDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Optional<Budget> getById(@PathVariable Long id){
-        return budgetService.getBudgetById(id);
+    public Optional<BudgetDTO> getById(@PathVariable Long id){
+        return budgetService.getBudgetById(id).map(BudgetDTO::new);
     }
 
     @GetMapping("/computer/{computerId}")
-    public List<Budget> getByComputerId(@PathVariable Long computerId){
-        return budgetService.getBudgetsByComputerId(computerId);
+    public List<BudgetDTO> getByComputerId(@PathVariable Long computerId){
+        return budgetService.getBudgetsByComputerId(computerId).stream()
+                .map(BudgetDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/status/{status}")
-    public List<Budget> getByStatus(@PathVariable String status){
-        return budgetService.getBudgetsByStatus(status);
+    public List<BudgetDTO> getByStatus(@PathVariable String status){
+        return budgetService.getBudgetsByStatus(status).stream()
+                .map(BudgetDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PostMapping

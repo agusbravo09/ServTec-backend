@@ -1,5 +1,6 @@
 package com.example.ServTec.controller;
 
+import com.example.ServTec.dto.utils.ClientDTO;
 import com.example.ServTec.model.Client;
 import com.example.ServTec.service.IClientService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/clients")
@@ -18,23 +20,27 @@ public class ClientController {
     private IClientService clientService;
 
     @GetMapping
-    public List<Client> getAll(){
-        return clientService.getAllClients();
+    public List<ClientDTO> getAll(){
+        return clientService.getAllClients().stream()
+                .map(ClientDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Client getById(@PathVariable Long id){
-        return clientService.getClientById(id).orElse(null);
+    public ClientDTO getById(@PathVariable Long id){
+        return clientService.getClientById(id).map(ClientDTO::new).orElse(null);
     }
 
     @GetMapping("/dni/{dni}")
-    public Optional<Client> getByDni(@PathVariable String dni){
-        return clientService.getClientByDni(dni);
+    public Optional<ClientDTO> getByDni(@PathVariable String dni){
+        return clientService.getClientByDni(dni).map(ClientDTO::new);
     }
 
     @GetMapping("/name/{name}")
-    public List<Client> getByName(@PathVariable String name){
-        return clientService.searchClientsByName(name);
+    public List<ClientDTO> getByName(@PathVariable String name){
+        return clientService.searchClientsByName(name).stream()
+                .map(ClientDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PostMapping

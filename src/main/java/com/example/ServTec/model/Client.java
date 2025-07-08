@@ -29,7 +29,6 @@ public class Client {
     private String cellphone;
     private String address;
     private String email;
-    private String location;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Computer> computersList;

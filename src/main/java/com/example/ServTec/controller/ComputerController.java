@@ -1,5 +1,6 @@
 package com.example.ServTec.controller;
 
+import com.example.ServTec.dto.utils.ComputerDTO;
 import com.example.ServTec.model.Computer;
 import com.example.ServTec.service.IComputerService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/computers")
@@ -18,23 +20,29 @@ public class ComputerController {
     private IComputerService computerService;
 
     @GetMapping
-    public List<Computer> getAll(){
-        return computerService.getAllComputers();
+    public List<ComputerDTO> getAll(){
+        return computerService.getAllComputers().stream()
+                .map(ComputerDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/client/{clientId}")
-    public List<Computer> getByClient(@PathVariable Long clientId){
-        return computerService.getComputersByClientId(clientId);
+    public List<ComputerDTO> getByClient(@PathVariable Long clientId){
+        return computerService.getComputersByClientId(clientId).stream()
+                .map(ComputerDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Optional<Computer> getById(@PathVariable Long id){
-        return computerService.getComputerById(id);
+    public Optional<ComputerDTO> getById(@PathVariable Long id){
+        return computerService.getComputerById(id).map(ComputerDTO::new);
     }
 
     @GetMapping("/type/{type}")
-    public List<Computer> getByType(@PathVariable String type){
-        return computerService.searchComputersByType(type);
+    public List<ComputerDTO> getByType(@PathVariable String type){
+        return computerService.searchComputersByType(type).stream()
+                .map(ComputerDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PostMapping

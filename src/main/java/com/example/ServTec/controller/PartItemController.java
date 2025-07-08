@@ -1,5 +1,6 @@
 package com.example.ServTec.controller;
 
+import com.example.ServTec.dto.utils.PartItemDTO;
 import com.example.ServTec.model.PartItem;
 import com.example.ServTec.service.IPartItemService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/parts")
@@ -17,8 +19,10 @@ public class PartItemController {
     private IPartItemService partService;
 
     @GetMapping("/budget/{budgetId}")
-    public List<PartItem> getByBudget(@PathVariable Long budgetId){
-        return partService.getPartItemsByBudgetId(budgetId);
+    public List<PartItemDTO> getByBudget(@PathVariable Long budgetId){
+        return partService.getPartItemsByBudgetId(budgetId).stream()
+                .map(PartItemDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PostMapping

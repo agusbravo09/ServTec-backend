@@ -55,7 +55,6 @@ public class ClientService implements IClientService {
         client1.setCellphone(client.getCellphone());
         client1.setAddress(client.getAddress());
         client1.setEmail(client.getEmail());
-        client1.setLocation(client.getLocation());
 
         clientRepo.save(client1);
 
