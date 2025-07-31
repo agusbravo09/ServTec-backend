@@ -22,12 +22,11 @@ public class ComputerService implements IComputerService {
 
     @Override
     @Transactional
-    public String createComputer(Computer computer) {
+    public void createComputer(Computer computer) {
         Client client1 = clientRepo.findById(computer.getClient().getId()).orElseThrow(() -> new RuntimeException("Cliente no encontrado."));
         computer.setClient(client1);
 
         computerRepo.save(computer);
-        return "Computadora agregada con exito.";
     }
 
     @Override
@@ -50,7 +49,7 @@ public class ComputerService implements IComputerService {
 
     @Override
     @Transactional
-    public String updateComputer(Long id, Computer computerDetails) {
+    public void updateComputer(Long id, Computer computerDetails) {
         Computer computer1 = computerRepo.findById(id).orElseThrow(() -> new RuntimeException("Computadora no encontrada con el ID: " + id));
 
         computer1.setType(computerDetails.getType());
@@ -63,12 +62,11 @@ public class ComputerService implements IComputerService {
 
         computerRepo.save(computer1);
 
-        return "Computadora actualizada con exito.";
     }
 
     @Override
     @Transactional
-    public String deleteComputer(Long id) {
+    public void deleteComputer(Long id) {
         Computer computer = computerRepo.findById(id).orElseThrow(() -> new RuntimeException("Computadora no encontrada con el ID: " + id));
 
         if(!computer.getBudgetList().isEmpty()){
@@ -76,7 +74,6 @@ public class ComputerService implements IComputerService {
         }
 
         computerRepo.deleteById(id);
-        return "Computadora eliminada con exito.";
     }
 
     @Override

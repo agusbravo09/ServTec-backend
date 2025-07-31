@@ -45,17 +45,17 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody Client client){
-        return clientService.createClient(client);
+    public void create(@RequestBody Client client){
+        clientService.createClient(client);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody Client client){
-        return clientService.updateClient(id, client);
+    public void update(@PathVariable Long id, @RequestBody Client client){
+        clientService.updateClient(id, client);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return clientService.deleteClient(id);
+    public void delete(@PathVariable Long id){
+        clientService.deleteClient(id);
     }
 }

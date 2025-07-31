@@ -27,18 +27,18 @@ public class PartItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody PartItem item){
-        return partService.createPartItem(item);
+    public void create(@RequestBody PartItem item){
+        partService.createPartItem(item);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody PartItem item){
-        return partService.updatePartItem(id, item);
+    public void update(@PathVariable Long id, @RequestBody PartItem item){
+        partService.updatePartItem(id, item);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return partService.deletePartItem(id);
+    public void delete(@PathVariable Long id){
+        partService.deletePartItem(id);
     }
 
 }

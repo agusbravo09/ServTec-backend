@@ -29,9 +29,6 @@ public class Budget {
     @Temporal(TemporalType.DATE)
     private Date validityDate;
 
-    @Column(name = "budget_number", unique = true, nullable = false)
-    private String budgetNumber;
-
     @Column(columnDefinition = "TEXT")
     private String comments;
 

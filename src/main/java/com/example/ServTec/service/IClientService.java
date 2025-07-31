@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IClientService {
-    String createClient(Client client);
+    void createClient(Client client);
     List<Client> getAllClients();
     Optional<Client> getClientById(Long id);
     Optional<Client> getClientByDni(String dni);
     List<Client> searchClientsByName(String name);
-    String updateClient(Long id, Client client);
-    String deleteClient(Long id);
+    void updateClient(Long id, Client client);
+    void deleteClient(Long id);
 }

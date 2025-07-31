@@ -20,7 +20,7 @@ public class PartItemService implements IPartItemService {
 
     @Override
     @Transactional
-    public String createPartItem(PartItem partItem) {
+    public void createPartItem(PartItem partItem) {
         Budget budget = budgetRepo.findById(partItem.getBudget().getId()).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado"));
 
         partItem.setBudget(budget);
@@ -30,7 +30,6 @@ public class PartItemService implements IPartItemService {
 
         budgetRepo.save(budget);
 
-        return "Parte agregada con exito.";
     }
 
     @Override
@@ -41,7 +40,7 @@ public class PartItemService implements IPartItemService {
 
     @Override
     @Transactional
-    public String updatePartItem(Long id, PartItem partItemDetails) {
+    public void updatePartItem(Long id, PartItem partItemDetails) {
         PartItem part = partRepo.findById(id).orElseThrow(() -> new RuntimeException("Parte no encontrada."));
 
         part.setDescription(partItemDetails.getDescription());
@@ -55,11 +54,10 @@ public class PartItemService implements IPartItemService {
         budget.calculateTotal();
         budgetRepo.save(budget);
 
-        return "Parte actualizada con exito.";
     }
 
     @Override
-    public String deletePartItem(Long id) {
+    public void deletePartItem(Long id) {
         PartItem part = partRepo.findById(id).orElseThrow(() -> new RuntimeException("Parte no encontrada con ID: " + id));
 
         Budget budget = part.getBudget();
@@ -68,6 +66,5 @@ public class PartItemService implements IPartItemService {
         budget.calculateTotal();
         budgetRepo.save(budget);
 
-        return "Parte eliminada con exito.";
     }
 }

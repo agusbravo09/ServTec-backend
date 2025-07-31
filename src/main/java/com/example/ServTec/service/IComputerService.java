@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IComputerService {
-    String createComputer(Computer computer);
+    void createComputer(Computer computer);
     List<Computer> getAllComputers();
     Optional<Computer> getComputerById(Long id);
     List<Computer> getComputersByClientId(Long clientId);
-    String updateComputer(Long id, Computer computerDetails);
-    String deleteComputer(Long id);
+    void updateComputer(Long id, Computer computerDetails);
+    void deleteComputer(Long id);
     List<Computer> searchComputersByType(String type);
 }

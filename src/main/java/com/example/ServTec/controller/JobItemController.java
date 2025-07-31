@@ -27,17 +27,17 @@ public class JobItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody JobItem item){
-        return jobService.createJobItem(item);
+    public void create(@RequestBody JobItem item){
+        jobService.createJobItem(item);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody JobItem item){
-        return jobService.updateJobItem(id, item);
+    public void update(@PathVariable Long id, @RequestBody JobItem item){
+        jobService.updateJobItem(id, item);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return jobService.deleteJobItem(id);
+    public void delete(@PathVariable Long id){
+        jobService.deleteJobItem(id);
     }
 }

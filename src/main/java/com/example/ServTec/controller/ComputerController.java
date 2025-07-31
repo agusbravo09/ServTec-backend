@@ -47,18 +47,18 @@ public class ComputerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody Computer computer){
-        return computerService.createComputer(computer);
+    public void create(@RequestBody Computer computer){
+        computerService.createComputer(computer);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody Computer computer){
-        return computerService.updateComputer(id, computer);
+    public void update(@PathVariable Long id, @RequestBody Computer computer){
+        computerService.updateComputer(id, computer);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return computerService.deleteComputer(id);
+    public void delete(@PathVariable Long id){
+        computerService.deleteComputer(id);
     }
 
 }

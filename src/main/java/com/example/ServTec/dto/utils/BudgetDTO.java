@@ -33,7 +33,6 @@ public class BudgetDTO {
         this.id = budget.getId();
         this.emissionDate = budget.getEmissionDate();
         this.validityDate = budget.getValidityDate();
-        this.budgetNumber = budget.getBudgetNumber();
         this.comments = budget.getComments();
         this.totalAmount = budget.getTotalAmount();
         this.status = budget.getStatus();

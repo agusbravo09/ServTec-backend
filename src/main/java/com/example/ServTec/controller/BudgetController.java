@@ -57,27 +57,27 @@ public class BudgetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody Budget budget){
-        return budgetService.createBudget(budget);
+    public void create(@RequestBody Budget budget){
+        budgetService.createBudget(budget);
     }
 
     @PostMapping("/{id}/add-job")
-    public String addJob(@PathVariable Long id, @RequestBody JobItem item){
-        return budgetService.addJobItemToBudget(id, item);
+    public void addJob(@PathVariable Long id, @RequestBody JobItem item){
+        budgetService.addJobItemToBudget(id, item);
     }
 
     @PostMapping("/{id}/add-part")
-    public String addPart(@PathVariable Long id, @RequestBody PartItem item){
-        return budgetService.addPartItemToBudget(id, item);
+    public void addPart(@PathVariable Long id, @RequestBody PartItem item){
+        budgetService.addPartItemToBudget(id, item);
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @RequestBody Budget budget){
-        return budgetService.updateBudget(id, budget);
+    public void update(@PathVariable Long id, @RequestBody Budget budget){
+        budgetService.updateBudget(id, budget);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return budgetService.deleteBudget(id);
+    public void delete(@PathVariable Long id){
+        budgetService.deleteBudget(id);
     }
 }

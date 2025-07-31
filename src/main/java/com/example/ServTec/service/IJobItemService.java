@@ -5,8 +5,8 @@ import com.example.ServTec.model.JobItem;
 import java.util.List;
 
 public interface IJobItemService {
-    String createJobItem(JobItem jobItem);
+    void createJobItem(JobItem jobItem);
     List<JobItem> getJobItemsByBudgetId(Long budgetId);
-    String updateJobItem(Long id, JobItem jobItemDetails);
-    String deleteJobItem(Long id);
+    void updateJobItem(Long id, JobItem jobItemDetails);
+    void deleteJobItem(Long id);
 }

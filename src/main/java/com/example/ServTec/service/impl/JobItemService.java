@@ -20,7 +20,7 @@ public class JobItemService implements IJobItemService {
 
     @Override
     @Transactional
-    public String createJobItem(JobItem jobItem) {
+    public void createJobItem(JobItem jobItem) {
         Budget budget = budgetRepo.findById(jobItem.getBudget().getId()).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado."));
 
         jobItem.setBudget(budget);
@@ -29,7 +29,6 @@ public class JobItemService implements IJobItemService {
         budget.calculateTotal();
         budgetRepo.save(budget);
 
-        return "Trabajo realizado agregado con exito.";
     }
 
     @Override
@@ -40,7 +39,7 @@ public class JobItemService implements IJobItemService {
 
     @Override
     @Transactional
-    public String updateJobItem(Long id, JobItem jobItemDetails) {
+    public void updateJobItem(Long id, JobItem jobItemDetails) {
         JobItem job = jobRepo.findById(id).orElseThrow(() -> new RuntimeException("Trabajo no encontrado con ID: " + id));
 
         job.setDescription(jobItemDetails.getDescription());
@@ -54,11 +53,10 @@ public class JobItemService implements IJobItemService {
 
         budget.calculateTotal();
         budgetRepo.save(budget);
-        return "Trabajo actualizado con exito.";
     }
 
     @Override
-    public String deleteJobItem(Long id) {
+    public void deleteJobItem(Long id) {
         JobItem job = jobRepo.findById(id).orElseThrow(() -> new RuntimeException("Trabajo no encontrado con ID: " + id));
 
         Budget budget = job.getBudget();
@@ -67,6 +65,5 @@ public class JobItemService implements IJobItemService {
 
         budget.calculateTotal();
         budgetRepo.save(budget);
-        return "Trabajo eliminado con exito.";
     }
 }

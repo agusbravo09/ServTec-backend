@@ -17,9 +17,8 @@ public class ClientService implements IClientService {
 
     @Override
     @Transactional
-    public String createClient(Client client) {
+    public void createClient(Client client) {
         clientRepo.save(client);
-        return "Cliente creado con exito";
     }
 
     @Override
@@ -48,7 +47,7 @@ public class ClientService implements IClientService {
 
     @Override
     @Transactional
-    public String updateClient(Long id, Client client) {
+    public void updateClient(Long id, Client client) {
         Client client1 = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado con el ID: " + id));
 
         client1.setName(client.getName());
@@ -57,19 +56,16 @@ public class ClientService implements IClientService {
         client1.setEmail(client.getEmail());
 
         clientRepo.save(client1);
-
-        return "Cliente actualizado con exito";
     }
 
     @Override
     @Transactional
-    public String deleteClient(Long id) {
+    public void deleteClient(Long id) {
         Client client1 = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado con el ID: " + id));
 
         if(!client1.getComputersList().isEmpty()){
             throw new RuntimeException("No se puede eliminar al cliente porque tiene computadoras asociadas.");
         }
-
-        return "Cliente eliminado con exito";
+        clientRepo.deleteById(client1.getId());
     }
 }

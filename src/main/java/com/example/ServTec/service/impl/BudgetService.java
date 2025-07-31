@@ -25,14 +25,14 @@ public class BudgetService implements IBudgetService {
 
     @Override
     @Transactional
-    public String createBudget(Budget budget) {
+    public void createBudget(Budget budget) {
         Client client1 = clientRepo.findById(budget.getClient().getId()).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
         Computer computer1 = computerRepo.findById(budget.getComputer().getId()).orElseThrow(() -> new RuntimeException("Computadora no encontrada"));
 
         budget.setClient(client1);
         budget.setComputer(computer1);
-        budget.setStatus(BudgetStatus.PENDING); // Estado inicial
+        budget.setStatus(BudgetStatus.PENDIENTE); // Estado inicial
 
         Budget savedBudget = budgetRepo.save(budget);
 
@@ -53,7 +53,6 @@ public class BudgetService implements IBudgetService {
 
         savedBudget.calculateTotal();
         budgetRepo.save(savedBudget);
-        return "Presupuesto creado con exito.";
     }
 
     @Override
@@ -88,7 +87,7 @@ public class BudgetService implements IBudgetService {
 
     @Override
     @Transactional
-    public String updateBudget(Long id, Budget budgetDetails) {
+    public void updateBudget(Long id, Budget budgetDetails) {
         Budget budget1 = budgetRepo.findById(id).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado con ID: " + id));
 
         budget1.setValidityDate(budgetDetails.getValidityDate());
@@ -98,22 +97,19 @@ public class BudgetService implements IBudgetService {
         budget1.calculateTotal();
 
         budgetRepo.save(budget1);
-
-        return "Presupuesto actualizado con exito";
     }
 
     @Override
     @Transactional
-    public String deleteBudget(Long id) {
+    public void deleteBudget(Long id) {
         Budget budget = budgetRepo.findById(id).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado con ID: " + id));
 
         budgetRepo.delete(budget);
-        return "Presupuesto eliminado con exito";
     }
 
     @Override
     @Transactional
-    public String addJobItemToBudget(Long budgetId, JobItem jobItem) {
+    public void addJobItemToBudget(Long budgetId, JobItem jobItem) {
         Budget budget = budgetRepo.findById(budgetId).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado con ID: " + budgetId));
 
         jobItem.setBudget(budget);
@@ -121,13 +117,11 @@ public class BudgetService implements IBudgetService {
 
         budget.calculateTotal();
         budgetRepo.save(budget);
-
-        return "Trabajo realizado agregado con exito.";
     }
 
     @Override
     @Transactional
-    public String addPartItemToBudget(Long budgetId, PartItem partItem) {
+    public void addPartItemToBudget(Long budgetId, PartItem partItem) {
         Budget budget = budgetRepo.findById(budgetId).orElseThrow(() -> new RuntimeException("Presupuesto no encontrado con ID: " + budgetId));
 
         partItem.setBudget(budget);
@@ -135,7 +129,5 @@ public class BudgetService implements IBudgetService {
 
         budget.calculateTotal();
         budgetRepo.save(budget);
-
-        return "Parte agregada con exito.";
     }
 }
